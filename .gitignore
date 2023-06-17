@@ -42,3 +42,4 @@ next-env.d.ts
 /.idea/modules.xml
 /.idea/vcs.xml
 /.env
+/.idea/git_toolbox_prj.xml
