@@ -1,6 +1,8 @@
 ## 내 블로그를 직접 만들어보자.
 현재 사용 중인 블로그(velog)를 내 자체 Next.js 블로그로 마이그레이션하자
 
+블로그 배포 링크: https://jvn4log.vercel.app/
+
 ### 사용할 스택
 - Next.js
 - TypeScript
