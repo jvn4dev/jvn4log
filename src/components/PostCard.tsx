@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';
@@ -11,9 +11,14 @@ type PostCardProps = {
 
 export const PostCard = (props: PostCardProps) => {
   const { data } = props;
+  const router = useRouter();
+
+  const handleClickPost = () => {
+    router.push(`/posts/${data.slug}`);
+  };
 
   return (
-    <Li key={data.id}>
+    <Li key={data.id} onClick={handleClickPost}>
       <H2>{data.title}</H2>
       <Divider />
       <TagsWrapper>
