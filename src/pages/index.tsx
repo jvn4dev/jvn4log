@@ -21,7 +21,7 @@ export const getStaticProps = async () => {
     props: {
       notionData: response,
     },
-    revalidate: 60 * 5, // 5분마다 재생성
+    revalidate: 60, // 1분마다 재생성
   };
 };
 
