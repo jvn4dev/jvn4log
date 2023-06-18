@@ -35,7 +35,6 @@ const Home: NextPage<HomeProps> = (props) => {
 
 export const getStaticProps = async () => {
   const notionInstance = new Notion();
-
   const response = await notionInstance.getAllPublished();
 
   return {
