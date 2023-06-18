@@ -1,4 +1,5 @@
 import colors from '@/themes/colors';
+import { device } from '@/themes/device';
 import fontSizes from '@/themes/fontSizes';
 import letterSpacings from '@/themes/letterSpacings';
 import lineHeights from '@/themes/lineHeights';
@@ -10,4 +11,5 @@ export const theme = {
   letterSpacings,
   fontSizes,
   colors,
+  device,
 } as const;

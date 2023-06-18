@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { createGlobalStyle } from 'styled-components';
+import { Footer } from '@/components/common/Footer';
+import { Navbar } from '@/components/common/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,7 +23,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyle />
       <main className={inter.className}>
+        <Navbar />
         <Component {...pageProps} />
+        <Footer />
       </main>
     </>
   );
