@@ -1,9 +1,9 @@
 import { AppProps } from 'next/app';
-import { Quicksand } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import { createGlobalStyle } from 'styled-components';
 
-const quicksand = Quicksand({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:type" content="website" />
       </Head>
       <GlobalStyle />
-      <main className={quicksand.className}>
+      <main className={inter.className}>
         <Component {...pageProps} />
       </main>
     </>
@@ -46,5 +46,7 @@ const GlobalStyle = createGlobalStyle`
   
   ol, ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
 `;

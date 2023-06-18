@@ -7,7 +7,7 @@ const colors = {
   grayDark: '#6B6B71',
   black: '#000',
   white: '#fff',
-  textDark: '#404F6F',
+  textDark: '#323335',
   textLight: '#69696D',
   red: '#FF4B4B',
 } as const;

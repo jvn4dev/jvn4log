@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { PostCard } from '@/components/PostCard';
 import { NotionData } from '@/types/notion';
 
@@ -9,10 +10,15 @@ export const PostCardWrapper = (props: PostCardWrapperProps) => {
   const { notionData } = props;
 
   return (
-    <ul>
+    <Ul>
       {notionData.map((data) => (
         <PostCard key={data.id} data={data} />
       ))}
-    </ul>
+    </Ul>
   );
 };
+
+const Ul = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+`;
