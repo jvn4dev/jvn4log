@@ -1,6 +1,9 @@
 import { AppProps } from 'next/app';
+import { Quicksand } from 'next/font/google';
 import Head from 'next/head';
 import { createGlobalStyle } from 'styled-components';
+
+const quicksand = Quicksand({ subsets: ['latin'] });
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,30 +20,31 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:type" content="website" />
       </Head>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <main className={quicksand.className}>
+        <Component {...pageProps} />
+      </main>
     </>
   );
 }
 
 const GlobalStyle = createGlobalStyle`
-html, body, textarea {
-  padding: 0;
-  mergin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans';
-}
-
-* {
-    box-sizing: border-box;
-}
-
-a {
-  cursor: pointer;
-  text-decoration: none;
-  transition: .25s;
-    color: #000;
-}
-
-ol, ul {
-  list-style: none;
-}
+  html, body, textarea {
+    padding: 0;
+    mergin: 0;
+  }
+  
+  * {
+      box-sizing: border-box;
+  }
+  
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    transition: .25s;
+      color: #000;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
 `;
