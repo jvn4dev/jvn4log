@@ -40,7 +40,7 @@ const Li = styled.li`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 450px;
+  height: 480px;
   padding: 70px;
   &:hover {
     background-color: ${theme.colors.grayBackground};
