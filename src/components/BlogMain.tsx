@@ -15,7 +15,7 @@ export const BlogMain = (props: BlogMainProps) => {
     <Container>
       <Wrapper>
         <Header>
-          <H1>Dev articles</H1>
+          <H1>Development articles</H1>
           <Divider />
         </Header>
         <PostCardWrapper notionData={notionData} />

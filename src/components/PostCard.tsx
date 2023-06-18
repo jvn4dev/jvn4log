@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
+import { Tag } from '@/components/Tag';
 import { theme } from '@/themes';
 import { NotionData } from '@/types/notion';
 
@@ -17,11 +18,15 @@ export const PostCard = (props: PostCardProps) => {
       <Divider />
       <TagsWrapper>
         {data.tags.map((tag) => (
-          <span key={tag}>{tag}</span>
+          <Tag key={tag} tag={tag} />
         ))}
       </TagsWrapper>
-      <P>{data.description}</P>
-      <Label>{data.date}</Label>
+      <BottomWrapper>
+        <P>{data.description}</P>
+        <DateWrapper>
+          <DateLabel>{data.date}</DateLabel>
+        </DateWrapper>
+      </BottomWrapper>
     </Li>
   );
 };
@@ -30,6 +35,7 @@ const Li = styled.li`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: 450px;
   padding: 70px 70px;
   &:hover {
     background-color: ${theme.colors.grayBackground};
@@ -39,9 +45,41 @@ const Li = styled.li`
 
 const H2 = styled.h2`
   margin: 0;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: ${theme.colors.textDark};
 `;
 
-const TagsWrapper = styled.div``;
+const TagsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+`;
 
-const P = styled.p``;
-const Label = styled.label``;
+const BottomWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+`;
+
+const P = styled.p`
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: ${theme.lineHeights[5]};
+  color: ${theme.colors.textLight};
+`;
+
+const DateWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const DateLabel = styled.label`
+  font-weight: 300;
+  font-size: 1rem;
+  color: ${theme.colors.textLight};
+`;
