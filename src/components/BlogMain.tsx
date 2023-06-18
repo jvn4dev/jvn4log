@@ -45,6 +45,7 @@ const Header = styled.header`
   margin-top: 100px;
   width: 100%;
   padding-left: 70px;
+  margin-bottom: 40px;
 `;
 
 const H1 = styled.h1`

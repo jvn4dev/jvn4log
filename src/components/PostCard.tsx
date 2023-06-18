@@ -36,7 +36,7 @@ const Li = styled.li`
   flex-direction: column;
   align-items: flex-start;
   height: 450px;
-  padding: 70px 70px;
+  padding: 70px;
   &:hover {
     background-color: ${theme.colors.grayBackground};
     cursor: pointer;
@@ -52,6 +52,7 @@ const H2 = styled.h2`
 
 const TagsWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   gap: 10px;
 `;
@@ -70,6 +71,12 @@ const P = styled.p`
   font-size: 1rem;
   line-height: ${theme.lineHeights[5]};
   color: ${theme.colors.textLight};
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 32px;
 `;
 
 const DateWrapper = styled.div`
@@ -80,6 +87,6 @@ const DateWrapper = styled.div`
 
 const DateLabel = styled.label`
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: ${theme.colors.textLight};
 `;
