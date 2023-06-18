@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 const GlobalStyle = createGlobalStyle`
   html, body, textarea {
     padding: 0;
-    mergin: 0;
+    margin: 0;
   }
   
   * {
