@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { Fragment } from 'react';
+import { BlogMain } from '@/components/BlogMain';
 import Notion from '@/lib/notion';
 import { NotionData } from '@/types/notion';
 
@@ -10,27 +10,7 @@ type HomeProps = {
 const Home: NextPage<HomeProps> = (props) => {
   const { notionData } = props;
 
-  return (
-    <div>
-      <h1>정성준 블로그</h1>
-      <ul>
-        {notionData.map((data) => (
-          <Fragment key={data.id}>
-            <li>
-              <h2>{data.title}</h2>
-              <div>
-                {data.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
-              <p>{data.description}</p>
-              <label>{data.date}</label>
-            </li>
-          </Fragment>
-        ))}
-      </ul>
-    </div>
-  );
+  return <BlogMain notionData={notionData} />;
 };
 
 export const getStaticProps = async () => {
