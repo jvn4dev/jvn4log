@@ -1,6 +1,6 @@
 import { MdStringObject } from 'notion-to-md/build/types';
 
-export type NotionData = {
+export type NotionDataType = {
   id: string;
   title: string;
   tags: string[];
@@ -10,6 +10,6 @@ export type NotionData = {
 };
 
 export type PostData = {
-  metadata: NotionData;
+  metadata: NotionDataType;
   markdown: MdStringObject;
 };

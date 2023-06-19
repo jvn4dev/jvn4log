@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
 import { BlogMain } from '@/components/BlogMain';
 import Notion from '@/lib/notion';
-import { NotionData } from '@/types/notion';
+import { NotionDataType } from '@/types/notion';
 
 type HomeProps = {
-  notionData: NotionData[];
+  notionData: NotionDataType[];
 };
 
 const Home: NextPage<HomeProps> = (props) => {

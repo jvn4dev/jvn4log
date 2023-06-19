@@ -1,10 +1,10 @@
 import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
-import { NotionData, PostData } from '@/types/notion';
+import { NotionDataType, PostData } from '@/types/notion';
 
 interface INotion {
-  getAllPublished(): Promise<NotionData[]>;
-  getPageMetaData(post: any): NotionData;
+  getAllPublished(): Promise<NotionDataType[]>;
+  getPageMetaData(post: any): NotionDataType;
   getTags(tags: any[]): string[];
   getToday(dateString: string): string;
 }
@@ -42,7 +42,7 @@ export default class Notion implements INotion {
     });
   }
 
-  getPageMetaData(post: any): NotionData {
+  getPageMetaData(post: any): NotionDataType {
     return {
       id: post.id ?? '',
       title: post.properties.Name.title[0].plain_text,

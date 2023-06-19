@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';
 import { theme } from '@/themes';
-import { NotionData } from '@/types/notion';
+import { NotionDataType } from '@/types/notion';
 
 type PostCardProps = {
-  data: NotionData;
+  data: NotionDataType;
 };
 
 export const PostCard = (props: PostCardProps) => {

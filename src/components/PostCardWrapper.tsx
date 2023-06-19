@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { PostCard } from '@/components/PostCard';
 import { theme } from '@/themes';
-import { NotionData } from '@/types/notion';
+import { NotionDataType } from '@/types/notion';
 
 type PostCardWrapperProps = {
-  notionData: NotionData[];
+  notionData: NotionDataType[];
 };
 
 export const PostCardWrapper = (props: PostCardWrapperProps) => {

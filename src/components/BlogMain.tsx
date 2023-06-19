@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCardWrapper } from '@/components/PostCardWrapper';
 import { theme } from '@/themes';
-import { NotionData } from '@/types/notion';
+import { NotionDataType } from '@/types/notion';
 
 type BlogMainProps = {
-  notionData: NotionData[];
+  notionData: NotionDataType[];
 };
 
 export const BlogMain = (props: BlogMainProps) => {

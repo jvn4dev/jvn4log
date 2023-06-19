@@ -37,18 +37,18 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
-  
+
   * {
       box-sizing: border-box;
   }
-  
+
   a {
     cursor: pointer;
     text-decoration: none;
     transition: .25s;
       color: #000;
   }
-  
+
   ol, ul {
     list-style: none;
     margin: 0;
