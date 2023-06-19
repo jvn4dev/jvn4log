@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';

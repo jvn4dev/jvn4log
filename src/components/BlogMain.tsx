@@ -1,3 +1,5 @@
+'use client';
+
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCardWrapper } from '@/components/PostCardWrapper';

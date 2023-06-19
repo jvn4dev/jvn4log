@@ -1,3 +1,5 @@
+'use client';
+
 import ReactMarkdown from 'react-markdown';
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { CodeBlock } from '@/components/CodeBlock';
