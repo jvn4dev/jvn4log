@@ -48,7 +48,7 @@ const Li = styled.li`
   }
 
   @media ${theme.device.tablet} {
-    padding: 70px 20px;
+    padding: 70px 0;
 
     &:hover {
       background-color: initial;
