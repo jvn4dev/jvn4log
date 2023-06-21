@@ -49,6 +49,11 @@ const Li = styled.li`
 
   @media ${theme.device.tablet} {
     padding: 70px 20px;
+
+    &:hover {
+      background-color: initial;
+      cursor: initial;
+    }
   }
 `;
 
