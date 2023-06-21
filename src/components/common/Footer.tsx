@@ -6,8 +6,10 @@ import { theme } from '@/themes';
 export const Footer = () => {
   return (
     <Container>
-      <Label>© 2023 Chung Seongjun</Label>
-      <P>All rights reserved.</P>
+      <Wrapper>
+        <Label>© 2023 Chung Seongjun</Label>
+        <P>All rights reserved.</P>
+      </Wrapper>
     </Container>
   );
 };
@@ -22,18 +24,22 @@ const Container = styled.footer`
   margin-top: 70px;
 `;
 
-const Label = styled.label`
+const Wrapper = styled.div`
   width: 90%;
   max-width: 1140px;
   padding-left: 70px;
+
+  @media ${theme.device.tablet} {
+    padding-left: 0;
+  }
+`;
+
+const Label = styled.label`
   color: ${theme.colors.textDark};
   font-size: 1.2rem;
 `;
 
 const P = styled.p`
-  width: 90%;
-  max-width: 1140px;
-  padding-left: 70px;
   color: ${theme.colors.textLight};
   font-size: 1rem;
 `;

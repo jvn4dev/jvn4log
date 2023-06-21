@@ -78,6 +78,10 @@ const Wrapper = styled.div`
   max-width: 1140px;
   margin: 0 auto;
   padding: 70px;
+
+  @media ${theme.device.tablet} {
+    padding: 70px 0;
+  }
 `;
 
 const H2 = styled.h2`
