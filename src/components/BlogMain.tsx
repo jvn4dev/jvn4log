@@ -46,6 +46,10 @@ const Header = styled.header`
   width: 100%;
   padding-left: 70px;
   margin-bottom: 40px;
+
+  @media ${theme.device.tablet} {
+    padding-left: 0;
+  }
 `;
 
 const H1 = styled.h1`

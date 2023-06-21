@@ -23,7 +23,7 @@ const Ul = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
-  @media ${theme.device.tablet} {
+  @media ${theme.device.laptop} {
     grid-template-columns: repeat(1, 1fr);
   }
 `;

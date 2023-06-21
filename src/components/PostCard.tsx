@@ -46,6 +46,10 @@ const Li = styled.li`
     background-color: ${theme.colors.grayBackground};
     cursor: pointer;
   }
+
+  @media ${theme.device.tablet} {
+    padding: 70px 20px;
+  }
 `;
 
 const H2 = styled.h2`
