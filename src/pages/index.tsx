@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { BlogMain } from '@/components/BlogMain';
+import BlogMain from '@/components/BlogMain';
 import Notion from '@/lib/notion';
 import { NotionData } from '@/types/notion';
 
