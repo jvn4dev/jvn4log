@@ -17,9 +17,6 @@ export const Navbar = () => {
           <Link href="/">
             <Menu>Blog</Menu>
           </Link>
-          <Link href="/">
-            <Menu>About</Menu>
-          </Link>
         </MenuWrapper>
       </NavWrapper>
     </NavContainer>
