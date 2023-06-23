@@ -44,12 +44,8 @@ export const withLoading = <P extends object>(
 
     return (
       <>
-        {
-          <>
-            {isLoading && <LoadingScreen />}
-            <Component {...props} />
-          </>
-        }
+        {isLoading && <LoadingScreen />}
+        <Component {...props} />
       </>
     );
   };
