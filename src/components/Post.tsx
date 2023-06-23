@@ -135,4 +135,18 @@ const MarkdownWrapper = styled(ReactMarkdown)`
     border-radius: 6px;
     color: ${theme.colors.red};
   }
+
+  blockquote {
+    border-left: 4px solid ${theme.colors.border};
+    padding-left: 20px;
+    margin: 35px 0;
+  }
+
+  a {
+    color: ${theme.colors.red};
+  }
+
+  p {
+    color: ${theme.colors.textLight};
+  }
 `;
