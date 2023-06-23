@@ -9,6 +9,20 @@ export const withLoading = <P extends object>(
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
+    // 로딩 시 페이지 스크롤 비활성화 처리
+    useEffect(() => {
+      if (isLoading) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
+
+      // 컴포넌트 언마운트시에 스크롤 활성화해주기
+      return () => {
+        document.body.style.overflow = 'unset';
+      };
+    }, [isLoading]);
+
     useEffect(() => {
       const handleStart = () => {
         setIsLoading(true);
