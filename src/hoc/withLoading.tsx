@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect, ComponentType } from 'react';
 import { LoadingScreen } from '@/components/common/LoadingScreen';
 
-const withLoading = <P extends object>(
+export const withLoading = <P extends object>(
   Component: ComponentType<P>,
 ): ComponentType<P> => {
   return function WithLoadingComponent(props: P) {
@@ -28,8 +28,15 @@ const withLoading = <P extends object>(
       };
     }, [router]);
 
-    return <>{isLoading ? <LoadingScreen /> : <Component {...props} />}</>;
+    return (
+      <>
+        {
+          <>
+            {isLoading && <LoadingScreen />}
+            <Component {...props} />
+          </>
+        }
+      </>
+    );
   };
 };
-
-export default withLoading;

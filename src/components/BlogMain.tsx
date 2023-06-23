@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCardWrapper } from '@/components/PostCardWrapper';
-import withLoading from '@/hoc/withLoading';
+import { withLoading } from '@/hoc/withLoading';
 import { theme } from '@/themes';
 import { NotionData } from '@/types/notion';
 
@@ -9,7 +9,7 @@ type BlogMainProps = {
   notionData: NotionData[];
 };
 
-const BlogMain = (props: BlogMainProps) => {
+export const BlogMain = withLoading((props: BlogMainProps) => {
   const { notionData } = props;
 
   return (
@@ -23,9 +23,7 @@ const BlogMain = (props: BlogMainProps) => {
       </Wrapper>
     </Container>
   );
-};
-
-export default withLoading(BlogMain);
+});
 
 const Container = styled.main`
   width: 100%;

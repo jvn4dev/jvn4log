@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import styled from 'styled-components';
 import { CodeBlock } from '@/components/CodeBlock';
 import { Tag } from '@/components/Tag';
+import { withLoading } from '@/hoc/withLoading';
 import { theme } from '@/themes';
 import { PostData } from '@/types/notion';
 
@@ -12,7 +13,7 @@ type PostProps = {
   post: PostData;
 };
 
-export const Post = ({ post }: PostProps) => {
+export const Post = withLoading(({ post }: PostProps) => {
   const { title, date, tags } = post.metadata;
 
   // Override react-markdown elements to add class names
@@ -66,7 +67,7 @@ export const Post = ({ post }: PostProps) => {
       </Wrapper>
     </Container>
   );
-};
+});
 
 const Container = styled.section`
   width: 100%;
