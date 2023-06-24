@@ -17,6 +17,13 @@ export const Navbar = () => {
           <Link href="/">
             <Menu>Blog</Menu>
           </Link>
+          <a
+            href="https://evening-twist-4fe.notion.site/3e319ab9b95d497988c53186c5a251b3"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Menu>Resume</Menu>
+          </a>
         </MenuWrapper>
       </NavWrapper>
     </NavContainer>
