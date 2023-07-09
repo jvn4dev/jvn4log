@@ -12,10 +12,8 @@ interface INotion {
 export default class Notion implements INotion {
   private notion: Client;
 
-  constructor() {
-    this.notion = new Client({
-      auth: process.env.NOTION_API_KEY,
-    });
+  constructor(notionClient: Client) {
+    this.notion = notionClient;
   }
 
   async getAllPublished() {
@@ -35,11 +33,7 @@ export default class Notion implements INotion {
       ],
     });
 
-    const allPosts = posts.results;
-
-    return allPosts.map((post) => {
-      return this.getPageMetaData(post);
-    });
+    return posts.results.map((post) => this.getPageMetaData(post));
   }
 
   getPageMetaData(post: any): NotionData {

@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { BlogMain } from '@/components/BlogMain';
-import Notion from '@/lib/notion';
+import { handleNotionErrors } from '@/lib/errorHandlers';
+import { notionInstance } from '@/lib/notionInstance';
 import { NotionData } from '@/types/notion';
 
 type HomeProps = {
@@ -14,15 +15,22 @@ const Home: NextPage<HomeProps> = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const notionInstance = new Notion();
-  const response = await notionInstance.getAllPublished();
+  try {
+    const response = await notionInstance.getAllPublished();
 
-  return {
-    props: {
-      notionData: response,
-    },
-    revalidate: 60, // 1분마다 정적페이지 재생성
-  };
+    return {
+      props: {
+        notionData: response,
+      },
+      revalidate: 60, // 1분마다 정적페이지 재생성
+    };
+  } catch (error) {
+    handleNotionErrors(error);
+
+    return {
+      props: {},
+    };
+  }
 };
 
 export default Home;
