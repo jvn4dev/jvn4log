@@ -1,15 +1,9 @@
-import { Client } from '@notionhq/client';
 import { GetStaticProps, NextPage } from 'next';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { Post } from '@/components/Post';
 import { handleNotionErrors } from '@/lib/errorHandlers';
-import Notion from '@/lib/notion';
+import { notionInstance } from '@/lib/notionInstance';
 import { PostData } from '@/types/notion';
-
-const notionClient = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
-const notionInstance = new Notion(notionClient);
 
 type PostProps = {
   post?: PostData;

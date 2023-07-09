@@ -1,15 +1,8 @@
-import { Client } from '@notionhq/client';
 import { NextPage } from 'next';
 import { BlogMain } from '@/components/BlogMain';
 import { handleNotionErrors } from '@/lib/errorHandlers';
-import Notion from '@/lib/notion';
+import { notionInstance } from '@/lib/notionInstance';
 import { NotionData } from '@/types/notion';
-
-const notionClient = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
-
-const notionInstance = new Notion(notionClient);
 
 type HomeProps = {
   notionData: NotionData[];
