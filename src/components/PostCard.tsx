@@ -1,3 +1,4 @@
+import { FavoriteBorder } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
@@ -29,6 +30,7 @@ export const PostCard = (props: PostCardProps) => {
       <BottomWrapper>
         <P>{data.description}</P>
         <DateWrapper>
+          <FavoriteBorder sx={{ color: theme.colors.red, fontSize: 30 }} />
           <DateLabel>{data.date}</DateLabel>
         </DateWrapper>
       </BottomWrapper>
@@ -96,7 +98,8 @@ const P = styled.p`
 const DateWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const DateLabel = styled.label`
