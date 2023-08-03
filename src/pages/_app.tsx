@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
@@ -28,6 +29,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         <Footer />
       </main>
+      <Analytics />
     </>
   );
 }
