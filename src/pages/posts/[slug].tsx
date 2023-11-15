@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from 'next';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { Post } from '@/components/Post';
 import { handleNotionErrors } from '@/lib/errorHandlers';
-import { notionInstance } from '@/lib/notionInstance';
+import { notionInstance } from '@/lib/notion/notionInstance';
 import { PostData } from '@/types/notion';
 
 type PostProps = {

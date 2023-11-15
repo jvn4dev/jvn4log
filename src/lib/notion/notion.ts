@@ -10,7 +10,7 @@ interface INotion {
 }
 
 export default class Notion implements INotion {
-  private notion: Client;
+  private readonly notion: Client;
 
   constructor(notionClient: Client) {
     this.notion = notionClient;
@@ -48,14 +48,10 @@ export default class Notion implements INotion {
   }
 
   getTags(tags: any[]): string[] {
-    const allTags = tags.map((tag) => {
-      return tag.name;
-    });
-
-    return allTags;
+    return tags.map((tag) => tag.name);
   }
 
-  getToday(dateString: string) {
+  getToday(dateString: string): string {
     const months = [
       'January',
       'February',
@@ -70,17 +66,10 @@ export default class Notion implements INotion {
       'November',
       'December',
     ];
-
-    let date = new Date();
-
-    if (dateString) {
-      date = new Date(dateString);
-    }
-
+    const date = dateString ? new Date(dateString) : new Date();
     const day = date.getDate();
     const month = months[date.getMonth()];
     const year = date.getFullYear();
-
     return `${month} ${day}, ${year}`;
   }
 
@@ -88,14 +77,7 @@ export default class Notion implements INotion {
     const n2m = new NotionToMarkdown({ notionClient: this.notion });
     const response = await this.notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID ?? '',
-      filter: {
-        property: 'Slug',
-        formula: {
-          string: {
-            equals: slug,
-          },
-        },
-      },
+      filter: { property: 'Slug', formula: { string: { equals: slug } } },
     });
 
     const page = response.results[0];
@@ -103,9 +85,6 @@ export default class Notion implements INotion {
     const mdBlocks = await n2m.pageToMarkdown(page.id);
     const mdString = n2m.toMarkdownString(mdBlocks);
 
-    return {
-      metadata,
-      markdown: mdString,
-    };
+    return { metadata, markdown: mdString };
   }
 }

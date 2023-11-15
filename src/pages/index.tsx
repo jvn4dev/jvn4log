@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { BlogMain } from '@/components/BlogMain';
 import { handleNotionErrors } from '@/lib/errorHandlers';
-import { notionInstance } from '@/lib/notionInstance';
+import { notionInstance } from '@/lib/notion/notionInstance';
 import { NotionData } from '@/types/notion';
 
 type HomeProps = {
