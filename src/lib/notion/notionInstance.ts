@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import Notion from '@/lib/notion';
+import Notion from '@/lib/notion/notion';
 
 const notionClient = new Client({
   auth: process.env.NOTION_API_KEY,
