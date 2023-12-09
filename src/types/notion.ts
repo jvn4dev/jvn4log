@@ -13,6 +13,17 @@ export type PostData = {
   markdown: MdStringObject;
 };
 
+export interface NotionDatabaseResponse {
+  object: string;
+  results: NotionPageData[];
+  next_cursor: unknown;
+  has_more: boolean;
+  type: string;
+  page_or_database: unknown;
+  developer_survey: string;
+  request_id: string;
+}
+
 export interface NotionPageData {
   object: string;
   id: string;

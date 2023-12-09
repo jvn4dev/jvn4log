@@ -1,30 +1,39 @@
 import { GetStaticProps, NextPage } from 'next';
-import { getBlogs } from '@/lib/notion';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import { Post } from '@/components/Post';
+import { getBlogs, getSinglePostBySlug } from '@/lib/notion';
 import { PostData } from '@/types/notion';
 
 type PostProps = {
   post?: PostData;
 };
 
-const PostPage: NextPage<PostProps> = (props) => {
-  console.log(props);
-  return <h1>Post</h1>;
+const PostPage = ({ post }: PostProps) => {
+  if (!post) return null;
+
+  return <Post post={post} />;
 };
 
 export async function getStaticPaths() {
   const blogs = await getBlogs();
   return {
-    paths: blogs.map((el) => ({
+    paths: blogs.map((blog) => ({
       params: {
-        id: el.id,
+        slug: blog.properties.Slug.rich_text[0].plain_text,
       },
     })),
+    fallback: false,
   };
 }
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
+  const { slug } = context.params as Params;
+  const post = await getSinglePostBySlug(slug);
+
   return {
-    props: {},
+    props: {
+      post,
+    },
   };
 };
 
