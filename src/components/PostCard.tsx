@@ -3,33 +3,33 @@ import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';
 import { theme } from '@/themes';
-import { NotionData } from '@/types/notion';
+import { PostCardData } from '@/types/notion';
 
 type PostCardProps = {
-  data: NotionData;
+  postCard: PostCardData;
 };
 
 export const PostCard = (props: PostCardProps) => {
-  const { data } = props;
+  const { postCard } = props;
   const router = useRouter();
 
   const handleClickPost = () => {
-    router.push(`/posts/${data.slug}`);
+    router.push(`/posts/${postCard.slug}`);
   };
 
   return (
-    <Li key={data.id} onClick={handleClickPost}>
-      <H2>{data.title}</H2>
+    <Li onClick={handleClickPost}>
+      <H2>{postCard.title}</H2>
       <Divider />
       <TagsWrapper>
-        {data.tags.map((tag) => (
+        {postCard.tags.map((tag) => (
           <Tag key={tag} tag={tag} />
         ))}
       </TagsWrapper>
       <BottomWrapper>
-        <P>{data.description}</P>
+        <P>{postCard.description}</P>
         <DateWrapper>
-          <DateLabel>{data.date}</DateLabel>
+          <DateLabel>{postCard.date}</DateLabel>
         </DateWrapper>
       </BottomWrapper>
     </Li>

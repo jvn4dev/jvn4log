@@ -2,7 +2,6 @@ import { GetStaticProps, NextPage } from 'next';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { Post } from '@/components/Post';
 import { handleNotionErrors } from '@/lib/errorHandlers';
-import { notionInstance } from '@/lib/notion/notionInstance';
 import { PostData } from '@/types/notion';
 
 type PostProps = {
@@ -20,25 +19,13 @@ const PostPage: NextPage<PostProps> = (props) => {
 };
 
 export const getStaticPaths = async () => {
-  const posts = await notionInstance.getAllPublished();
-  const paths = posts.map(({ slug }) => ({ params: { slug } }));
-
-  return {
-    paths,
-    fallback: 'blocking',
-  };
+  return {};
 };
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
-  const { slug } = context.params as Params;
-
   try {
-    const post = await notionInstance.getSinglePostBySlug(slug);
-
     return {
-      props: {
-        post,
-      },
+      props: {},
       revalidate: 60,
     };
   } catch (error) {
