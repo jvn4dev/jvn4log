@@ -1,7 +1,5 @@
 import { GetStaticProps, NextPage } from 'next';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
-import { Post } from '@/components/Post';
-import { handleNotionErrors } from '@/lib/errorHandlers';
+import { getBlogs } from '@/lib/notion';
 import { PostData } from '@/types/notion';
 
 type PostProps = {
@@ -9,33 +7,25 @@ type PostProps = {
 };
 
 const PostPage: NextPage<PostProps> = (props) => {
-  const { post } = props;
-
-  if (!post) {
-    return null;
-  }
-
-  return <Post post={post} />;
+  console.log(props);
+  return <h1>Post</h1>;
 };
 
-export const getStaticPaths = async () => {
-  return {};
-};
+export async function getStaticPaths() {
+  const blogs = await getBlogs();
+  return {
+    paths: blogs.map((el) => ({
+      params: {
+        id: el.id,
+      },
+    })),
+  };
+}
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
-  try {
-    return {
-      props: {},
-      revalidate: 60,
-    };
-  } catch (error) {
-    handleNotionErrors(error);
-
-    // Return empty props when an error occurs
-    return {
-      props: {},
-    };
-  }
+  return {
+    props: {},
+  };
 };
 
 export default PostPage;

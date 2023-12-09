@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
-import { NOTION_API_KEY, NOTION_DATABASE_ID } from '@/config';
+import useFormattedDate from '@/lib/hooks/useFormattedDate';
+import { getBlogs } from '@/lib/notion';
 import { theme } from '@/themes';
 import { NotionPageData } from '@/types/notion';
 
-type HomeProps = { pageDataList: NotionPageData[] };
+type HomeProps = { blogs: NotionPageData[] };
 
-const Home = ({ pageDataList }: HomeProps) => {
-  console.log(pageDataList[0].properties);
+const Home = ({ blogs }: HomeProps) => {
   return (
     <Container>
       <Wrapper>
@@ -17,16 +17,16 @@ const Home = ({ pageDataList }: HomeProps) => {
           <Divider />
         </Header>
         <Ul>
-          {pageDataList.map((page) => (
+          {blogs.map((blog) => (
             <PostCard
-              key={page.id}
+              key={blog.id}
               postCard={{
-                title: page.properties.Name.title[0].plain_text,
-                slug: page.properties.Slug.rich_text[0].plain_text,
-                tags: page.properties.Tags.multi_select.map((tag) => tag.name),
+                title: blog.properties.Name.title[0].plain_text,
+                slug: blog.properties.Slug.rich_text[0].plain_text,
+                tags: blog.properties.Tags.multi_select.map((tag) => tag.name),
                 description:
-                  page.properties.Description.rich_text[0].plain_text,
-                date: page.properties.Date.created_time,
+                  blog.properties.Description.rich_text[0].plain_text,
+                date: blog.last_edited_time,
               }}
             />
           ))}
@@ -37,26 +37,11 @@ const Home = ({ pageDataList }: HomeProps) => {
 };
 
 export const getStaticProps = async () => {
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'Notion-Version': '2022-06-28',
-      'content-type': 'application/json',
-      Authorization: `${NOTION_API_KEY}`,
-    },
-    body: JSON.stringify({ page_size: 100 }),
-  };
-
-  const result = await fetch(
-    `https://api.notion.com/v1/databases/${NOTION_DATABASE_ID}/query`,
-    options,
-  );
-  const pageData = await result.json();
+  const blogs = await getBlogs();
 
   return {
     props: {
-      pageDataList: pageData.results,
+      blogs,
     },
   };
 };

@@ -1,7 +1,8 @@
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';
+import useFormattedDate from '@/lib/hooks/useFormattedDate';
 import { theme } from '@/themes';
 import { PostCardData } from '@/types/notion';
 
@@ -9,16 +10,11 @@ type PostCardProps = {
   postCard: PostCardData;
 };
 
-export const PostCard = (props: PostCardProps) => {
-  const { postCard } = props;
-  const router = useRouter();
-
-  const handleClickPost = () => {
-    router.push(`/posts/${postCard.slug}`);
-  };
+export const PostCard = ({ postCard }: PostCardProps) => {
+  const formattedDate = useFormattedDate(postCard.date);
 
   return (
-    <Li onClick={handleClickPost}>
+    <Li href={`posts/${postCard.slug}`}>
       <H2>{postCard.title}</H2>
       <Divider />
       <TagsWrapper>
@@ -29,14 +25,14 @@ export const PostCard = (props: PostCardProps) => {
       <BottomWrapper>
         <P>{postCard.description}</P>
         <DateWrapper>
-          <DateLabel>{postCard.date}</DateLabel>
+          <DateLabel>{formattedDate}</DateLabel>
         </DateWrapper>
       </BottomWrapper>
     </Li>
   );
 };
 
-const Li = styled.li`
+const Li = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
