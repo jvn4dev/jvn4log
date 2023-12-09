@@ -8,13 +8,13 @@ export const Navbar = () => {
     <NavContainer>
       <NavWrapper>
         <MainIconWrapper>
-          <Link href="/">
+          <Link href="/posts">
             <WavingIcon />
             <Label>Hi there!</Label>
           </Link>
         </MainIconWrapper>
         <MenuWrapper>
-          <Link href="/">
+          <Link href="/posts">
             <Menu>Blog</Menu>
           </Link>
           <a
