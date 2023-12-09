@@ -1,42 +1,38 @@
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';
+import useFormattedDate from '@/lib/hooks/useFormattedDate';
 import { theme } from '@/themes';
-import { NotionData } from '@/types/notion';
+import { PostCardData } from '@/types/notion';
 
 type PostCardProps = {
-  data: NotionData;
+  postCard: PostCardData;
 };
 
-export const PostCard = (props: PostCardProps) => {
-  const { data } = props;
-  const router = useRouter();
-
-  const handleClickPost = () => {
-    router.push(`/posts/${data.slug}`);
-  };
+export const PostCard = ({ postCard }: PostCardProps) => {
+  const formattedDate = useFormattedDate(postCard.date);
 
   return (
-    <Li key={data.id} onClick={handleClickPost}>
-      <H2>{data.title}</H2>
+    <Li href={`posts/${postCard.slug}`}>
+      <H2>{postCard.title}</H2>
       <Divider />
       <TagsWrapper>
-        {data.tags.map((tag) => (
+        {postCard.tags.map((tag) => (
           <Tag key={tag} tag={tag} />
         ))}
       </TagsWrapper>
       <BottomWrapper>
-        <P>{data.description}</P>
+        <P>{postCard.description}</P>
         <DateWrapper>
-          <DateLabel>{data.date}</DateLabel>
+          <DateLabel>{formattedDate}</DateLabel>
         </DateWrapper>
       </BottomWrapper>
     </Li>
   );
 };
 
-const Li = styled.li`
+const Li = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

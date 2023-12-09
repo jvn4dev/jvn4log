@@ -21,7 +21,6 @@ const Container = styled.footer`
   align-items: center;
   background-color: ${theme.colors.grayBackground};
   padding: 70px 0;
-  margin-top: 70px;
 `;
 
 const Wrapper = styled.div`

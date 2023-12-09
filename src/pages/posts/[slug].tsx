@@ -1,54 +1,40 @@
 import { GetStaticProps, NextPage } from 'next';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { Post } from '@/components/Post';
-import { handleNotionErrors } from '@/lib/errorHandlers';
-import { notionInstance } from '@/lib/notion/notionInstance';
+import { getBlogs, getSinglePostBySlug } from '@/lib/notion';
 import { PostData } from '@/types/notion';
 
 type PostProps = {
   post?: PostData;
 };
 
-const PostPage: NextPage<PostProps> = (props) => {
-  const { post } = props;
-
-  if (!post) {
-    return null;
-  }
+const PostPage = ({ post }: PostProps) => {
+  if (!post) return null;
 
   return <Post post={post} />;
 };
 
-export const getStaticPaths = async () => {
-  const posts = await notionInstance.getAllPublished();
-  const paths = posts.map(({ slug }) => ({ params: { slug } }));
-
+export async function getStaticPaths() {
+  const blogs = await getBlogs();
   return {
-    paths,
-    fallback: 'blocking',
+    paths: blogs.map((blog) => ({
+      params: {
+        slug: blog.properties.Slug.rich_text[0].plain_text,
+      },
+    })),
+    fallback: false,
   };
-};
+}
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
   const { slug } = context.params as Params;
+  const post = await getSinglePostBySlug(slug);
 
-  try {
-    const post = await notionInstance.getSinglePostBySlug(slug);
-
-    return {
-      props: {
-        post,
-      },
-      revalidate: 60,
-    };
-  } catch (error) {
-    handleNotionErrors(error);
-
-    // Return empty props when an error occurs
-    return {
-      props: {},
-    };
-  }
+  return {
+    props: {
+      post,
+    },
+  };
 };
 
 export default PostPage;
