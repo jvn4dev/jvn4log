@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { Post } from '@/components/Post';
 import { getBlogs, getSinglePostBySlug } from '@/lib/notion';

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
-import useFormattedDate from '@/lib/hooks/useFormattedDate';
 import { getBlogs } from '@/lib/notion';
 import { theme } from '@/themes';
 import { NotionPageData } from '@/types/notion';
