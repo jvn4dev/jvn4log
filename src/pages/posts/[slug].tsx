@@ -14,19 +14,21 @@ const PostPage = ({ post }: PostProps) => {
   return <Post post={post} />;
 };
 
-export async function getStaticPaths() {
-  const blogs = await getBlogs();
-  return {
-    paths: blogs.map((blog) => ({
-      params: {
-        slug: blog.properties.Slug.rich_text[0].plain_text,
-      },
-    })),
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   const blogs = await getBlogs();
+//   return {
+//     paths: blogs.map((blog) => ({
+//       params: {
+//         slug: blog.properties.Slug.rich_text[0].plain_text,
+//       },
+//     })),
+//     fallback: false,
+//   };
+// }
 
-export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
+export const getServerSideProps: GetStaticProps<PostProps> = async (
+  context,
+) => {
   const { slug } = context.params as Params;
   const post = await getSinglePostBySlug(slug);
 
