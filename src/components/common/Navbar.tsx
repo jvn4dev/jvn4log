@@ -1,3 +1,5 @@
+'use client';
+
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 import Link from 'next/link';
 import styled from 'styled-components';

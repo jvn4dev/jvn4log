@@ -1,7 +1,8 @@
+'use client';
+
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
-import { getBlogs } from '@/lib/notion';
 import { theme } from '@/themes';
 import { NotionPageData } from '@/types/notion';
 
@@ -33,16 +34,6 @@ const Home = ({ blogs }: HomeProps) => {
       </Wrapper>
     </Container>
   );
-};
-
-export const getStaticProps = async () => {
-  const blogs = await getBlogs();
-
-  return {
-    props: {
-      blogs,
-    },
-  };
 };
 
 const Container = styled.main`

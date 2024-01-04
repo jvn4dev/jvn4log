@@ -1,5 +1,6 @@
 import { NOTION_API_KEY, NOTION_DATABASE_ID } from '@/config';
-import { n2m } from '@/lib/notion/client';
+import { n2m } from '@/libs/notion/client';
+import { FetchOptions } from '@/types/fetch';
 import {
   NotionDatabaseResponse,
   NotionPageData,
@@ -7,7 +8,12 @@ import {
 } from '@/types/notion';
 import { getPageMetaData } from '@/utils/notion';
 
-async function fetcher(url: string, method = 'GET', body?: any) {
+async function fetcher(
+  url: string,
+  method = 'GET',
+  fetchOption: FetchOptions,
+  body?: any,
+) {
   const requestOptions: RequestInit = {
     method,
     headers: {
@@ -16,6 +22,19 @@ async function fetcher(url: string, method = 'GET', body?: any) {
       'Notion-Version': '2022-06-28',
     },
   };
+
+  switch (fetchOption) {
+    case 'SSG':
+      requestOptions.cache = 'force-cache';
+      break;
+    case 'SSR':
+      requestOptions.cache = 'no-store';
+      break;
+    case 'ISR':
+      requestOptions.next = {
+        revalidate: 30,
+      };
+  }
 
   if (body) {
     requestOptions.body = JSON.stringify(body);
@@ -30,18 +49,25 @@ async function fetcher(url: string, method = 'GET', body?: any) {
   return data;
 }
 
-export async function getBlogs(): Promise<NotionPageData[]> {
+export async function getBlogs(
+  fetchOption: FetchOptions,
+): Promise<NotionPageData[]> {
   const res = await fetcher(
     `https://api.notion.com/v1/databases/${NOTION_DATABASE_ID}/query`,
     'POST',
+    fetchOption,
   );
   return res.results;
 }
 
-export async function getSinglePostBySlug(slug: string): Promise<PostData> {
+export async function getSinglePostBySlug(
+  slug: string,
+  fetchOption: FetchOptions,
+): Promise<PostData> {
   const res = await fetcher(
     `https://api.notion.com/v1/databases/${NOTION_DATABASE_ID}/query`,
     'POST',
+    fetchOption,
     {
       filter: {
         property: 'Slug',

@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { vs } from 'react-syntax-highlighter/dist/cjs/styles/prism';

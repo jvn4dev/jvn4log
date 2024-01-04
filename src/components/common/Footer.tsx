@@ -1,4 +1,5 @@
-// components/Footer.js
+'use client';
+
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/themes';

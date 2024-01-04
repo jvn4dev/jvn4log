@@ -1,8 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { Tag } from '@/components/Tag';
-import useFormattedDate from '@/lib/hooks/useFormattedDate';
+import useFormattedDate from '@/libs/hooks/useFormattedDate';
 import { theme } from '@/themes';
 import { PostCardData } from '@/types/notion';
 
