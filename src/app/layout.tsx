@@ -1,22 +1,21 @@
-'use client';
-
+import { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Footer } from '@/components/common/Footer';
 import { Navbar } from '@/components/common/Navbar';
-import StyledComponentsRegistry from '@/libs/registry';
-import GlobalStyles from '@/styles/GlobalStyles';
 
-// const metadata: Metadata = {
-//   title: 'jvn4blog',
-//   description: 'Welcome to Next.js',
-//   openGraph: {
-//     locale: 'ko_KR',
-//     type: 'website',
-//   },
-//   icons: {
-//     icon: '/favicon.ico',
-//   },
-// };
+import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'jvn4blog',
+  description: 'Welcome to Next.js',
+  openGraph: {
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,14 +28,11 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <StyledComponentsRegistry>
-        <GlobalStyles />
-        <main className={inter.className}>
-          <Navbar />
-          {children}
-          <Footer />
-        </main>
-      </StyledComponentsRegistry>
+      <main className={inter.className}>
+        <Navbar />
+        {children}
+        <Footer />
+      </main>
       {/* FIXME: add Analytics for app Router */}
       {/*<Analytics />*/}
     </html>

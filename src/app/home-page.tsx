@@ -1,22 +1,20 @@
 'use client';
 
-import styled from 'styled-components';
 import { Divider } from '@/components/Divider';
 import { PostCard } from '@/components/PostCard';
-import { theme } from '@/themes';
 import { NotionPageData } from '@/types/notion';
 
 type HomeProps = { blogs: NotionPageData[] };
 
 const Home = ({ blogs }: HomeProps) => {
   return (
-    <Container>
-      <Wrapper>
-        <Header>
-          <H1>Dev. articles</H1>
+    <main className="w-full flex justify-center">
+      <div className="flex flex-col justify-between items-center w-11/12 max-w-screen-xl">
+        <header className="flex flex-col mt-[100px] w-full pl-[70px] mb-[40px] md:pl-0">
+          <h1 className="text-5xl text-red-400 font-light">Dev. articles</h1>
           <Divider />
-        </Header>
-        <Ul>
+        </header>
+        <ul className="grid grid-cols-2 lg:grid-cols-1">
           {blogs.map((blog) => (
             <PostCard
               key={blog.id}
@@ -30,53 +28,10 @@ const Home = ({ blogs }: HomeProps) => {
               }}
             />
           ))}
-        </Ul>
-      </Wrapper>
-    </Container>
+        </ul>
+      </div>
+    </main>
   );
 };
-
-const Container = styled.main`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  max-width: 1140px;
-`;
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: column;
-  margin-top: 100px;
-  width: 100%;
-  padding-left: 70px;
-  margin-bottom: 40px;
-
-  @media ${theme.device.tablet} {
-    padding-left: 0;
-  }
-`;
-
-const H1 = styled.h1`
-  font-size: 3rem;
-  font-weight: 300;
-  color: ${theme.colors.textDark};
-`;
-
-const Ul = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  @media ${theme.device.laptop} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
 
 export default Home;

@@ -16,67 +16,30 @@ export const PostCard = ({ postCard }: PostCardProps) => {
   const formattedDate = useFormattedDate(postCard.date);
 
   return (
-    <Li href={`posts/${postCard.slug}`}>
-      <H2>{postCard.title}</H2>
+    <Link
+      className="flex flex-col items-start h=[520px] p-[70px] hover:bg-gray-100 cursor-pointer md:py-[70px]"
+      href={`posts/${postCard.slug}`}
+    >
+      <h2 className="m-0 font-medium text-2xl text-zinc-800">
+        {postCard.title}
+      </h2>
       <Divider />
-      <TagsWrapper>
+      <div className="flex flex-wrap justify-start gap-2.5">
         {postCard.tags.map((tag) => (
           <Tag key={tag} tag={tag} />
         ))}
-      </TagsWrapper>
-      <BottomWrapper>
-        <P>{postCard.description}</P>
+      </div>
+      <div className="flex flex-col justify-between items-start w-full h-full">
+        <p className="font-medium text-lg leading-[37px] text-gray-600 ">
+          {postCard.description}
+        </p>
         <DateWrapper>
           <DateLabel>{formattedDate}</DateLabel>
         </DateWrapper>
-      </BottomWrapper>
-    </Li>
+      </div>
+    </Link>
   );
 };
-
-const Li = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 520px;
-  padding: 70px;
-  &:hover {
-    background-color: ${theme.colors.grayBackground};
-    cursor: pointer;
-  }
-
-  @media ${theme.device.tablet} {
-    padding: 70px 0;
-
-    &:hover {
-      background-color: initial;
-      cursor: initial;
-    }
-  }
-`;
-
-const H2 = styled.h2`
-  margin: 0;
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: ${theme.colors.textDark};
-`;
-
-const TagsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
-`;
-
-const BottomWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-`;
 
 const P = styled.p`
   font-weight: 400;

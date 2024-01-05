@@ -1,15 +1,3 @@
-'use client';
-
-import styled from 'styled-components';
-import { theme } from '@/themes';
-
 export const Divider = () => {
-  return <Div />;
+  return <div className="w-[100px] h-1 my-3 border-y-gray-50" />;
 };
-
-const Div = styled.div`
-  width: 100px;
-  height: 2px;
-  margin: 40px 0;
-  background-color: ${theme.colors.border};
-`;
