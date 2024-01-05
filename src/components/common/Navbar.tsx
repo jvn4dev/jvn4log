@@ -22,7 +22,7 @@ export const Navbar = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <Menu>Resume</Menu>
+            <Menu>About me</Menu>
           </a>
         </MenuWrapper>
       </NavWrapper>
